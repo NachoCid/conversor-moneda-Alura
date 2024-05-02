@@ -17,7 +17,9 @@ la librería gson, en el cual se van agregando las transacciones realizadas de m
 - Implementación de librerías externas (gson).
 - Consumos de APIs.
 - Captura de errores.
-- Creación de archivos externos.
+- Creación de archivos externos mediante la clase FileWriter.
+- Interacción con el usuario por medio de la clase Scanner.
+- Manipulación de hora y fecha a través de la clase LocalDateTime.
 
 
 <h2> Captura de la vista en consola: </h2>

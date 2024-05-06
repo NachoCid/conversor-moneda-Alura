@@ -16,6 +16,7 @@ public class Calculo {
 
         Scanner teclado = new Scanner(System.in);
         List<Transaccion> listaTransacciones = new ArrayList<>();
+        var consumoApi = new ConsumoAPI();
 
         int seleccion = 0;
         int valorIngresado = 0;
@@ -91,7 +92,6 @@ public class Calculo {
                             /*System.out.println(ex.getMessage());*/
                             teclado.next();
                         }
-                        /*entradaAlLoop = seleccion;*/
                     }
                     case 5 -> {
                         System.out.println("Ingrese la cantidad de dólares para transformarlos en reales: ");
@@ -144,7 +144,6 @@ public class Calculo {
                     }
                     case 9 -> {
                         System.out.println("\nMuchas gracias por utilizar nuestro programa de conversión.");
-                        /*entradaAlLoop = seleccion;*/
                         continua = false;
                         enviarConsulta = false;
                         break;
@@ -152,23 +151,15 @@ public class Calculo {
 
                     default -> {
                         System.out.println("\nIngrese el valor correspondiente a una de las 7 opciones, si desea salir ingrese 9.");
-                        /*entradaAlLoop = seleccion;*/
                         enviarConsulta = false;
                     }
 
                 }
 
-                String direccion = "https://v6.exchangerate-api.com/v6/9799b8108bdbde2e925d4528/pair/"
-                        + codigoPaisIngresado + "/" + codigoPaisConversion + "/" + valorIngresado;
-                HttpClient client = HttpClient.newHttpClient();
-                HttpRequest request = HttpRequest.newBuilder().uri(URI.create(direccion)).build();
-                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-                Gson gson = new Gson();
-
-                String json = response.body();
-                /* System.out.println(direccion);*/
+                var json = ConsumoAPI.obtenerDatos("https://v6.exchangerate-api.com/v6/9799b8108bdbde2e925d4528/pair/" +
+                        codigoPaisIngresado+ "/" +codigoPaisConversion+"/"+ valorIngresado);
                 /*System.out.println(json);*/
+                Gson gson = new Gson();
 
                 if (enviarConsulta) {
 
